@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.tablesorter.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+<link rel="stylesheet" href="css/cucumber.css" type="text/css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="shortcut icon" href="images/favicon.png"/>
+
+<script>
+$(document).ready(function() {
+    // this will tell tablesorter to try looking for the data-value attribute
+    // if present, it'll sort by that instead
+    // otherwise, it'll sort by the text content of the table cell
+    $("#tablesorter").tablesorter({
+        textAttribute: 'data-value',
+        // ignores the first row of the header, the 'scenario', 'steps', since
+        // sorting those doesn't make sense
+        selectorHeaders: '> thead tr:not(.dont-sort) th',
+        // use a stable sort
+        sortStable: true
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<title>Cucumber Reports  - Steps Overview</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navigation">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <p class="navbar-text navbar-left">Cucumber Report</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li role="presentation" ><a href="overview-features.html">Features</a></li>
+        <li role="presentation" ><a href="overview-tags.html">Tags</a></li>
+        <li role="presentation"     class="active" ><a href="overview-steps.html">Steps</a></li>
+        <li role="presentation" ><a href="overview-failures.html">Failures</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+  <div class="col-md-5 col-md-offset-1">
+
+<table class="table table-bordered" id="build-info">
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="info">
+      <td>No Name (add projectName to cucumber-reporting.properties)</td>
+      <td>23 Mar 2023, 12:25</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+  <div class="col-md-3 col-md-offset-2">
+  </div>
+</div>
+
+
+<div id="report-lead" class="container-fluid">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>Steps Statistics</h2>
+      <p>The following graph shows step statistics for this build. Below list is based on results.
+ step does not provide information about result then is not listed below.
+ Additionally @Before and @After are not counted because they are part of the scenarios, not steps.</p>
+  </div>
+</div>
+
+<div class="container-fluid" id="report">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <table id="tablesorter" class="stats-table table-hover">
+
+        <thead>
+          <tr class="header">
+            <th>Implementation</th>
+            <th>Occurrences</th>
+            <th>Average duration</th>
+            <th>Max duration</th>
+            <th>Total durations</th>
+            <th>Ratio</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+              <td class="location">com.potato.step_definitions.Hooks.teardownScenario(io.cucumber.java.Scenario)</td>
+              <td>15</td>
+              <td class="duration" data-value="920856933">0.920</td>
+              <td class="duration" data-value="920856933">1.034</td>
+              <td class="duration" data-value="13812854000">13.812</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.potato.step_definitions.LoginStepDefinitions.userShouldSeePleaseFillOutThisFieldMessageDisplayed()</td>
+              <td>1</td>
+              <td class="duration" data-value="48866600">0.048</td>
+              <td class="duration" data-value="48866600">0.048</td>
+              <td class="duration" data-value="48866600">0.048</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.potato.step_definitions.LoginStepDefinitions.user_clicks_login_button()</td>
+              <td>13</td>
+              <td class="duration" data-value="2469062815">2.469</td>
+              <td class="duration" data-value="2469062815">5.506</td>
+              <td class="duration" data-value="32097816600">32.097</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.potato.step_definitions.LoginStepDefinitions.user_enters_password(java.lang.String)</td>
+              <td>14</td>
+              <td class="duration" data-value="156197942">0.156</td>
+              <td class="duration" data-value="156197942">0.322</td>
+              <td class="duration" data-value="2186771200">2.186</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.potato.step_definitions.LoginStepDefinitions.user_enters_username(java.lang.String)</td>
+              <td>13</td>
+              <td class="duration" data-value="195181876">0.195</td>
+              <td class="duration" data-value="195181876">0.242</td>
+              <td class="duration" data-value="2537364400">2.537</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.potato.step_definitions.LoginStepDefinitions.user_is_on_sign_in_page()</td>
+              <td>15</td>
+              <td class="duration" data-value="7615124706">7.615</td>
+              <td class="duration" data-value="7615124706">10.356</td>
+              <td class="duration" data-value="114226870600">1:54.226</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.potato.step_definitions.LoginStepDefinitions.user_pushes_ENTER_button_on_the_keyboard()</td>
+              <td>1</td>
+              <td class="duration" data-value="3347976100">3.347</td>
+              <td class="duration" data-value="3347976100">3.347</td>
+              <td class="duration" data-value="3347976100">3.347</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.potato.step_definitions.LoginStepDefinitions.user_should_see_WrongUsernameOrPassword_message_displayed()</td>
+              <td>6</td>
+              <td class="duration" data-value="1759547433">1.759</td>
+              <td class="duration" data-value="1759547433">10.078</td>
+              <td class="duration" data-value="10557284600">10.557</td>
+              <td class="failed">83.33%</td>
+            </tr>
+            <tr>
+              <td class="location">com.potato.step_definitions.LoginStepDefinitions.user_should_see_a_homepage()</td>
+              <td>7</td>
+              <td class="duration" data-value="2877154685">2.877</td>
+              <td class="duration" data-value="2877154685">3.096</td>
+              <td class="duration" data-value="20140082800">20.140</td>
+              <td class="passed">100.00%</td>
+            </tr>
+            <tr>
+              <td class="location">com.potato.step_definitions.LoginStepDefinitions.user_should_see_the_the_password_in_bullet_signs_by_default()</td>
+              <td>1</td>
+              <td class="duration" data-value="39892600">0.039</td>
+              <td class="duration" data-value="39892600">0.039</td>
+              <td class="duration" data-value="39892600">0.039</td>
+              <td class="passed">100.00%</td>
+            </tr>
+        </tbody>
+
+        <tfoot class="total">
+          <tr>
+            <td>10</td>
+            <td>86</td>
+            <td class="duration">2.313</td>
+            <td class="duration">1:54.226</td>
+            <td class="duration">3:18.995</td>
+            <td>Totals</td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<nav class="navbar navbar-default" id="footer">
+  <div class="container-fluid">
+    <p class="navbar-text navbar-right">
+        <small>generate Cucumber HTML reports via:&nbsp;</small>
+        <a class="navbar-link" href="https://github.com/jenkinsci/cucumber-reports-plugin">Jenkins Plugin</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-reporting">Standalone</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/cucumber-sandwich">Sandwich</a> |
+        <a class="navbar-link" href="https://github.com/damianszczepanik/maven-cucumber-reporting">Maven</a>
+        &nbsp;&nbsp;
+    </p>
+  </div>
+</nav>
+
+</body>
+</html>

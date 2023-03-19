@@ -20,5 +20,14 @@ public class UpgenixPage {
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement loginButton;
 
+    @FindBy(xpath = "//div[@class='o_thread_title']")
+    public WebElement homePageText;
+
+    @FindBy(xpath = "//p[@class='alert alert-danger']")
+    public WebElement wrongLoginOrPasswordMessage;
+
+
+
+
 
 }

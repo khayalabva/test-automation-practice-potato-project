@@ -2,9 +2,16 @@ package com.potato.step_definitions;
 
 import com.potato.pages.UpgenixPage;
 import com.potato.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class LoginStepDefinitions {
 
@@ -15,62 +22,46 @@ public class LoginStepDefinitions {
         Driver.getDriver().get("https://qa.upgenix.net/");
     }
 
-    @When("user enters valid username")
-    public void user_enters_valid_username() {
-        upgenixPage.usernameInputBox.sendKeys("lolo");
-    }
-    @When("user enters valid password")
-    public void user_enters_valid_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @When("user clicks login button")
-    public void user_clicks_login_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Then("user should see a homepage")
-    public void user_should_see_a_homepage() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("user enters username {string}")
+    public void user_enters_username(String string) {
+        upgenixPage.usernameInputBox.sendKeys(string);
     }
 
-    @When("user enters invalid username")
-    public void user_enters_invalid_username() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @When("user enters password {string}")
+    public void user_enters_password(String string) {
+        upgenixPage.passwordInputBox.sendKeys(string);
     }
-    @When("user enters invalid password")
-    public void user_enters_invalid_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @When("user clicks login button")
+    public void user_clicks_login_button() {
+        upgenixPage.loginButton.click();
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
     }
-    @When("clicks login button")
-    public void clicks_login_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @Then("user should see a homepage")
+    public void user_should_see_a_homepage() {
+        Assert.assertTrue(upgenixPage.homePageText.isDisplayed());
     }
-    @Then("user should see {string} message displayed")
-    public void user_should_see_message_displayed(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @Then("user should see WrongUsernameOrPassword message displayed")
+    public void user_should_see_WrongUsernameOrPassword_message_displayed() {
+        Assert.assertTrue(upgenixPage.wrongLoginOrPasswordMessage.isDisplayed());
+    }
+
+    @Then("user should see PleaseFillOutThisField message displayed")
+    public void userShouldSeePleaseFillOutThisFieldMessageDisplayed() {
+        String validationMessage = upgenixPage.usernameInputBox.getAttribute("validationMessage");
+        Assert.assertEquals(validationMessage, "Please fill out this field.");
     }
 
     @Then("user should see the the password in bullet signs by default")
     public void user_should_see_the_the_password_in_bullet_signs_by_default() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Assert.assertTrue(upgenixPage.passwordInputBox.getAttribute("type").equals("password") );
+
     }
 
-    @When("user pushes {string} button on the keyboard")
-    public void user_pushes_button_on_the_keyboard(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @And("user pushes ENTER button on the keyboard")
+    public void user_pushes_ENTER_button_on_the_keyboard(){
+        upgenixPage.passwordInputBox.sendKeys(Keys.ENTER);
     }
-
-
-
-
-
-
 }

@@ -1,51 +1,73 @@
+@upgenix @smoke @login
 Feature: Login functionality verification
 
-  Given user in on sign in page
-
+  @UPGNX10-239
   #AC01
-  Scenario: Users can log in with valid credentials
-    When user enters valid username
-    And user enters valid password
+  Scenario Outline: Users can log in with valid credentials
+    Given user in on sign in page
+    When user enters username "<username>"
+    And user enters password "<password>"
     And user clicks login button
     Then user should see a homepage
 
+    Examples: valid username and valid password
+      | username                 | password     |
+      | salesmanager15@info.com  | salesmanager |
+      | salesmanager103@info.com | salesmanager |
+      | salesmanager75@info.com  | salesmanager |
+      | posmanager10@info.com    | posmanager   |
+      | posmanager59@info.com    | posmanager   |
+      | posmanager145@info.com   | posmanager   |
 
+
+  @UPGNX10-240
   #AC02
-  Scenario:  Users should see "Wrong login/password" message displayed for invalid credentials
-    When user enters invalid username
-    And user enters invalid password
-    And clicks login button
-    Then user should see "Wrong login/password" message displayed
+  Scenario Outline:  Users should see "Wrong login/password" message displayed for invalid credentials
+    Given user in on sign in page
+    When user enters username "<username>"
+    And user enters password "<password>"
+    And user clicks login button
+    Then user should see WrongUsernameOrPassword message displayed
 
-    When user enters valid username
-    And user enters invalid password
-    And clicks login button
-    Then user should see "Wrong login/password" message displayed
+    Examples: invalid username, invalid password
+      | username                 | password      |
+      | ssalesmanager15@info.com | salesmanager1 |
+      | psosmanager145@info.com  | posmanager4   |
+
+    Examples: valid username, invalid password
+      | username                 | password      |
+      | salesmanager15@info.com  | salesmanager3 |
+      | salesmanager103@info.com | posmanager7   |
+
+    Examples: invalid username, valid password
+      | username                 | password     |
+      | salesmanager106@info.com | salesmanager |
+      | posmanager160@info.com   | posmanager   |
 
 
-    When user enters invalid username
-    And user enters valid password
-    And clicks login button
-    Then user should see "Wrong login/password" message displayed
-
-
+ @UPGNX10-241
   #AC03
-  Scenario:  Users should see "Please fill out this field" message displayed if the password or username is empty
+  Scenario: Users should see "Please fill out this field" message displayed if the password or username is empty
+    Given user in on sign in page
     When user clicks login button
-    Then user should see "Please fill out this field" message displayed
+    Then user should see PleaseFillOutThisField message displayed
 
 
+ @UPGNX10-242
   #AC04
   Scenario:  Users should see the password in bullet signs by default while typing (like ****)
-    When user enters valid password
+    Given user in on sign in page
+    When user enters password "salesmanager"
     Then user should see the the password in bullet signs by default
 
 
+ @UPGNX10-244
   #AC05
   Scenario:  Users should be able to use the ‘Enter’ key of the keyboard correctly on the login page.
-    When user enters valid username
-    And user enters valid password
-    And user pushes 'enter' button on the keyboard
+    Given user in on sign in page
+    When user enters username "salesmanager15@info.com"
+    And user enters password "salesmanager"
+    And user pushes ENTER button on the keyboard
     Then user should see a homepage
 
 
