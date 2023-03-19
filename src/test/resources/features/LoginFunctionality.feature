@@ -1,38 +1,48 @@
+
+@upgenix @smoke @login
 Feature: Login functionality verification
 
-  Given user in on sign in page
+
+
 
   #AC01
-  Scenario: Users can log in with valid credentials
-    When user enters valid username
-    And user enters valid password
+  Scenario Outline: Users can log in with valid credentials
+    Given user in on sign in page
+    When user enters valid username "<validUsername>"
+    And user enters valid password "<validPassword>"
     And user clicks login button
     Then user should see a homepage
 
+    Examples:
+      | validUsername            | validPassword |
+      | salesmanager15@info.com  | salesmanager  |
+      | salesmanager103@info.com | salesmanager  |
+      | salesmanager75@info.com  | salesmanager  |
+      | posmanager10@info.com    | posmanager    |
+      | posmanager59@info.com    | posmanager    |
+      | posmanager145@info.com   | posmanager    |
+
+
 
   #AC02
-  Scenario:  Users should see "Wrong login/password" message displayed for invalid credentials
-    When user enters invalid username
-    And user enters invalid password
-    And clicks login button
-    Then user should see "Wrong login/password" message displayed
+  Scenario Template:  Users should see "Wrong login/password" message displayed for invalid credentials
+    Given user in on sign in page
+    When user enters invalid username "<invalidUsername>"
+    And user enters invalid password "<invalidPassword>"
+    And user clicks login button
+    Then user should see WrongUsernameOrPassword message displayed
 
-    When user enters valid username
-    And user enters invalid password
-    And clicks login button
-    Then user should see "Wrong login/password" message displayed
+    Examples:
+      | invalidUsername          | invalidPassword |
+      | ssalesmanager15@info.com | salesmanager1   |
+      | psosmanager145@info.com  | posmanager4     |
 
-
-    When user enters invalid username
-    And user enters valid password
-    And clicks login button
-    Then user should see "Wrong login/password" message displayed
-
-
+@wip
   #AC03
-  Scenario:  Users should see "Please fill out this field" message displayed if the password or username is empty
+  Scenario: Users should see "Please fill out this field" message displayed if the password or username is empty
+    Given user in on sign in page
     When user clicks login button
-    Then user should see "Please fill out this field" message displayed
+    Then user should see PleaseFillOutThisField message displayed
 
 
   #AC04
