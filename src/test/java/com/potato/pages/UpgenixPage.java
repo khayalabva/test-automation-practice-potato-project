@@ -30,8 +30,6 @@ public class UpgenixPage {
     @FindBy(xpath = "//span[@class='oe_topbar_name']")
     public WebElement usernameButtonOnHomePage;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu'][2]")
-    public WebElement dropDownMenuOnHomePage;
 
     @FindBy(xpath = "//a[text()='Log out']")
     public WebElement logoutButton;
