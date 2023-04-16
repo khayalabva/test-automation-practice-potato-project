@@ -20,7 +20,7 @@
   Then user sees SessionExpired message displayed
 
 @UPGNX10-306
-#AC
+#AC3
   Scenario: User must be logged out if the user closes the open tab or tabs
   Given user in on home page
   When user closes the only open tab
